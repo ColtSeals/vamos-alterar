@@ -41,31 +41,32 @@ fi
 
 function ovpn(){
 #!/bin/bash
+# Instalador do OpenVPN preconfigurado para vivo
+# Funciona em: Debian, Ubuntu e CentOS
+# Esse script irÃ¡ funcionar perfeitamente no Debian, Ubuntu, CentOS e provavelmente outros distros
+# da mesma famÃ­lia, embora nenhum suporte seja oferecido para eles.
+
+# Detect Debian users running the script with "sh" instead of bash
 if readlink /proc/$$/exe | grep -qs "dash"; then
-	echo "This script needs to be run with bash, not sh"
+	echo "O script precisa ser rodado com o BASH, e nÃ£o com o SH"
 	exit 1
 fi
 
 if [[ "$EUID" -ne 0 ]]; then
-	echo "Sorry, you need to run this as root"
+	echo "Desculpe, vocÃª precisa executar o script como root"
 	exit 2
 fi
 
 if [[ ! -e /dev/net/tun ]]; then
-if [ -z "$(command grep '^tun$' '/etc/modules')" ]; then
-  command echo '# Needed by OpenVPN
-tun' >> '/etc/modules'
-fi
-if [ ! -e '/dev/net/tun' ]; then
-  command mkdir --parent '/dev/net'
-  command mknod '/dev/net/tun' c 10 200
-fi
-	echo "TUN is not available"
+	echo "Interface VPN nÃ£o identificada!"
+	echo "Isso geralmente acontece pois sua provedora de serviÃ§os bloqueou..."
+	echo "... O mÃ³dulo de VPN, ou ele nÃ£o estÃ¡ instalado (improvÃ¡vel)"
 	exit 3
 fi
 
 if grep -qs "CentOS release 5" "/etc/redhat-release"; then
-	echo "CentOS 5 is too old and not supported"
+	echo "CentOS 5 Ã© muito antigo e nÃ£o Ã© suportado."
+	echo "Por favor, atualize para uma versÃ£o mais recente do sistema."
 	exit 4
 fi
 if [[ -e /etc/debian_version ]]; then
@@ -77,7 +78,10 @@ elif [[ -e /etc/centos-release || -e /etc/redhat-release ]]; then
 	GROUPNAME=nobody
 	RCLOCAL='/etc/rc.d/rc.local'
 else
-	echo "Looks like you aren't running this installer on a Debian, Ubuntu or CentOS system"
+	echo "Aparentemente vocÃª nÃ£o estÃ¡ rodando esse script no Ubuntu, Debian ou CentOS..."
+	echo "... Ou nenhum sistema da famÃ­lia deles."
+	echo "Infelizmente nÃ£o hÃ¡ suporte desse script para seu sistema, mas..."
+	echo "...VocÃª pode entrar em contato com http://t.me/kandiesky para solicitar o mesmo."
 	exit 5
 fi
 
@@ -102,29 +106,13 @@ newclient () {
 # I do this to make the script compatible with NATed servers (lowendspirit.com)
 # and to avoid getting an IPv6.
 IP=$(ip addr | grep 'inet' | grep -v inet6 | grep -vE '127\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | grep -o -E '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | head -1)
+if [[ "$IP" = "" ]]; then
+		IP=$(wget -4qO- "http://whatismyip.akamai.com/")
+fi
 
 if [[ -e /etc/openvpn/server.conf ]]; then
 	while :
 	do
-	clear
-if [ $(id -u) -eq 0 ]
-then
-	clear
-else
-	if echo $(id) |grep sudo > /dev/null
-	then
-	clear
-	echo "Voce não é root"
-	echo "Seu usuario esta no grupo sudo"
-	echo -e "Para virar root execute \033[1;31msudo su\033[0m"
-	exit
-	else
-	clear
-	echo -e "Vc nao esta como usuario root, nem com seus direitos (sudo)\nPara virar root execute \033[1;31msu\033[0m e digite sua senha root"
-	exit
-	fi
-fi
-
 clear
 echo -e "\033[36;37m PAINEL DE GERENCIAMENTO DA VPS\033[0m"
 echo -e "\033[0;35m------------------------------------------------------------\033[0m"
