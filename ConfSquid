@@ -303,34 +303,23 @@ vivo.ddivulga.com" > /etc/payloads
 
 ##SYS###DEBIAN
 if [ $opt -eq 1 ]; then
-echo "#ConfiguracaoSquiD
-acl url1 dstdomain -i '/etc/payloads'
-acl url2 dstdomain -i 127.0.0.1
-acl url3 dstdomain -i localhost
-acl url4 dstdomain -i $ip
-acl GET method GET
-
-always_direct allow all
-
-http_access allow url1
-http_access allow url2
-http_access allow url3
-http_access allow url4
-http_access deny all
-header_access From deny all
-header_access Via deny all
-header_access Server deny all
-
-#portas
+echo "#Portas
 http_port 80
 http_port 8080
 http_port 8799
 http_port 3128
-
-visible_hostname PROXYSERVER
-
-forwarded_for off
-pipeline_prefetch on
+#ConfiguracaoSquiD
+visible_hostname VpsPack
+acl ip dstdomain $ip
+acl GET method GET
+http_access allow ip
+acl accept dstdomain -i "/etc/payloads"
+http_access allow accept
+acl local dstdomain localhost
+http_access allow local
+acl iplocal dstdomain 127.0.0.1
+http_access allow iplocal
+http_access deny all
 " > /etc/squid3/squid.conf
 ##
 if [ "$insta" = "2" ]; then
@@ -355,33 +344,23 @@ fi
 
 ##SYS###UBUNTU
 if [ $opt -eq 2 ]; then
-echo "#ConfiguracaoSquiD
-acl url1 dstdomain -i '/etc/payloads'
-acl url2 dstdomain -i 127.0.0.1
-acl url3 dstdomain -i localhost
-acl url4 dstdomain -i $ip
-acl GET method GET
-always_direct allow all
-
-http_access allow url1
-http_access allow url2
-http_access allow url3
-http_access allow url4
-http_access deny all
-header_access From deny all
-header_access Via deny all
-header_access Server deny all
-
-#portas
+echo "#Portas
 http_port 80
 http_port 8080
 http_port 8799
 http_port 3128
-
-visible_hostname PROXYSERVER
-
-forwarded_for off
-pipeline_prefetch on
+#ConfiguracaoSquiD
+visible_hostname VpsPack
+acl ip dstdomain $ip
+acl GET method GET
+http_access allow ip
+acl accept dstdomain -i "/etc/payloads"
+http_access allow accept
+acl local dstdomain localhost
+http_access allow local
+acl iplocal dstdomain 127.0.0.1
+http_access allow iplocal
+http_access deny all
 " > /etc/squid/squid.conf
 ##
 if [ "$insta" = "2" ]; then
@@ -485,33 +464,23 @@ echo -e ".bookclaro.com.br
 
 ##SYS###DEBIAN
 if [ $opt -eq 1 ]; then
-echo "#ConfiguracaoSquiD
-acl url1 url_regex -i '/etc/payloads'
-acl url2 dstdomain -i 127.0.0.1
-acl url3 dstdomain -i localhost
-acl url4 dstdomain -i $ip
-acl GET method GET
-always_direct allow all
-
-http_access allow url1
-http_access allow url2
-http_access allow url3
-http_access allow url4
-http_access deny all
-header_access From deny all
-header_access Via deny all
-header_access Server deny all
-
-#portas
+echo "#Portas
 http_port 80
 http_port 8080
 http_port 8799
 http_port 3128
-
-visible_hostname PROXYSERVER
-
-forwarded_for off
-pipeline_prefetch on
+#ConfiguracaoSquiD
+visible_hostname VpsPack
+acl ip dstdomain $ip
+acl GET method GET
+http_access allow ip
+acl accept dstdomain -i "/etc/payloads"
+http_access allow accept
+acl local dstdomain localhost
+http_access allow local
+acl iplocal dstdomain 127.0.0.1
+http_access allow iplocal
+http_access deny all
 " > /etc/squid3/squid.conf
 ##
 if [ "$insta" = "2" ]; then
@@ -536,33 +505,23 @@ fi
 
 ##SYS###UBUNTU
 if [ $opt -eq 2 ]; then
-echo "#ConfiguracaoSquiD
-acl url1 url_regex -i '/etc/payloads'
-acl url2 dstdomain -i 127.0.0.1
-acl url3 dstdomain -i localhost
-acl url4 dstdomain -i $ip
-acl GET method GET
-always_direct allow all
-
-http_access allow url1
-http_access allow url2
-http_access allow url3
-http_access allow url4
-http_access deny all
-header_access From deny all
-header_access Via deny all
-header_access Server deny all
-
-#portas
+echo "#Portas
 http_port 80
 http_port 8080
 http_port 8799
 http_port 3128
-
-visible_hostname PROXYSERVER
-
-forwarded_for off
-pipeline_prefetch on
+#ConfiguracaoSquiD
+visible_hostname VpsPack
+acl ip dstdomain $ip
+acl GET method GET
+http_access allow ip
+acl accept dstdomain -i "/etc/payloads"
+http_access allow accept
+acl local dstdomain localhost
+http_access allow local
+acl iplocal dstdomain 127.0.0.1
+http_access allow iplocal
+http_access deny all
 " > /etc/squid/squid.conf
 sleep 1s
 ##
