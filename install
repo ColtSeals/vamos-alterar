@@ -15,6 +15,7 @@ chmod +x /bin/limite
 rm -rf /bin/criarusuario 2>/dev/null
 wget -o /dev/null -O- https://raw.githubusercontent.com/ColtSeals/estuda/master/criarusuario > /bin/criarusuario
 chmod +x /bin/criarusuario
+rm -rf /bin/openssh 2>/dev/null
 wget -o /dev/null -O- https://raw.githubusercontent.com/ColtSeals/vamos-alterar/master/openssh > /bin/openssh
 chmod +x /bin/openssh
 rm -rf /bin/deletarusuario 2>/dev/null
