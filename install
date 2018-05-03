@@ -13,8 +13,10 @@ rm -rf /bin/limite 2>/dev/null
 wget -o /dev/null -O- https://raw.githubusercontent.com/ColtSeals/estuda/master/limite > /bin/limite
 chmod +x /bin/limite
 rm -rf /bin/criarusuario 2>/dev/null
-wget -o /dev/null -O- https://raw.githubusercontent.com/ColtSeals/vamos-alterar/master/criarusuario > /bin/criarusuario
+wget -o /dev/null -O- https://raw.githubusercontent.com/ColtSeals/estuda/master/criarusuario > /bin/criarusuario
 chmod +x /bin/criarusuario
+wget -o /dev/null -O- https://raw.githubusercontent.com/ColtSeals/estuda/master/openssh > /bin/openssh
+chmod +x /bin/openssh
 rm -rf /bin/deletarusuario 2>/dev/null
 wget -o /dev/null -O- https://raw.githubusercontent.com/ColtSeals/estuda/master/deletarusuario > /bin/deletarusuario
 chmod +x /bin/deletarusuario
