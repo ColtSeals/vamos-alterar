@@ -23,12 +23,6 @@ else
 					then
 						tput setaf 7 ; tput setab 4 ; tput bold ; echo "" ; echo "VocÃª digitou uma senha vazia!" ; echo "" ; tput sgr0
 						exit 1
-					else
-						sizepass=$(echo ${#password})
-						if [[ $sizepass -lt 6 ]]
-						then
-							tput setaf 7 ; tput setab 4 ; tput bold ; echo "" ; echo "VocÃª digitou uma senha muito curta!" ; echo "Para manter o usuÃ¡rio seguro use no mÃ­nimo 6 caracteres" ; echo "combinando diferentes letras e nÃºmeros!" ; echo "" ; tput sgr0
-							exit 1
 						else	
 							read -p "Dias para expirar: " dias
 							if (echo $dias | egrep '[^0-9]' &> /dev/null)
