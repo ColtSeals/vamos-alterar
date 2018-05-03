@@ -70,7 +70,7 @@ echo "   Detalhes da nova conta OpenSSH"
 echo "-----------------------------------------------"
 echo "   Host            : $MYIP"
 echo "   Nome            : $name"
-echo "   Senha           : $pass"
+echo "   Senha           : $password"
 echo "   Limite          : $sshlimiter"
 echo "   Data Expiração  : $final"
 echo "   Porta           : 80,8080,8799,443,22,3128"
@@ -87,6 +87,4 @@ echo " "
 					fi
 				fi
 			fi
-		fi
-	fi	
-fi
+			exit
