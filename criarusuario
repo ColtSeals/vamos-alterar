@@ -77,3 +77,4 @@ MYIP=$(wget -qO- ipv4.icanhazip.com)
   echo " "												
   echo " "
 	fi
+	exit
